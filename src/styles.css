@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Cookie&family=Fraunces:opsz,wght@9..144,400&display=swap');
+
+:root { font-family: Fraunces, Georgia, serif; color: #130c08; background: #fffbf5; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+.page { height: 100svh; overflow: hidden; position: relative; padding: clamp(2.5rem, 6vh, 4.5rem) 5vw 1.5rem; background: #fffbf5; }
+.headline-wrap { position: relative; width: fit-content; max-width: 100%; margin: 0 auto; opacity: 0; animation: headline-in .55s ease-out 1.95s forwards; }
+h1 { position: relative; z-index: 1; margin: 0; font-size: clamp(1.25rem, 4vw, 4rem); line-height: .98; font-weight: 400; letter-spacing: -.055em; text-align: center; white-space: nowrap; }
+h1 em, .prompt p { color: #aa5107; font-family: Cookie, 'Brush Script MT', cursive; font-style: normal; font-weight: 400; letter-spacing: 0; }
+h1 em { display: inline-block; margin: 0 8px; font-size: 1.414em; transform: rotate(3.3deg); }
+.shine { position: absolute; width: clamp(3rem, 5vw, 5rem); pointer-events: none; }
+.shine-left { left: -4.5rem; top: -2.8rem; transform: rotate(-12deg); }
+.shine-right { right: -4.2rem; bottom: -2.3rem; transform: rotate(14deg) scale(.9); }
+.cookie-stage { position: relative; width: min(52vw, 30rem); margin: clamp(1.2rem, 3vh, 2.5rem) auto 0; display: grid; place-items: center; }
+.cookie-rise { width: 100%; opacity: 0; animation: cookie-rise 1.8s cubic-bezier(.22, 1, .36, 1) .15s forwards; }
+.cookie-button { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; animation: breathe 5s ease-in-out infinite; transition: transform .25s ease; }
+.cookie-visual { position: relative; display: block; width: 100%; height: auto; aspect-ratio: 1; }
+.cookie-button img { display: block; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 12px 16px rgba(126, 68, 16, .22)) drop-shadow(0 28px 36px rgba(126, 68, 16, .14)); }
+.cookie-image, .crumbles { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+.cookie-idle { opacity: 1; }
+.cookie-crack { transition: opacity .4s ease; }
+.cookie-left, .cookie-right { transition: transform .62s cubic-bezier(.22, 1, .36, 1), opacity .3s ease; }
+.cookie-crack { z-index: 2; }
+.cookie-button .cookie-left { z-index: 3; inset: 19%; width: 62%; height: 62%; }
+.cookie-button .cookie-right { z-index: 3; inset: 27.5%; width: 45%; height: 45%; }
+.cookie-button .crumbles { z-index: 4; inset: 35%; width: 30%; height: 30%; transition: opacity .3s ease, transform .6s ease; }
+.paper-tip { position: absolute; z-index: 5; left: 50%; top: 44%; width: 1.2rem; height: 2.4rem; border: .2rem solid #f3c77e; border-left-color: #b9671d; border-radius: 50%; opacity: 0; transform: translate(-50%, 1rem) rotate(8deg); transition: opacity .35s ease, transform .45s ease; }
+.cookie-cracking .cookie-idle { opacity: 0; transition: opacity .4s ease; }
+.cookie-cracking .cookie-crack { opacity: 1; }
+.cookie-splitting .cookie-idle, .cookie-paper-emerging .cookie-idle, .cookie-splitting .cookie-crack, .cookie-paper-emerging .cookie-crack { opacity: 0; }
+.cookie-paper-sequence .cookie-idle, .cookie-paper-sequence .cookie-crack, .cookie-fortune-typing .cookie-idle, .cookie-fortune-typing .cookie-crack, .cookie-fortune-revealed .cookie-idle, .cookie-fortune-revealed .cookie-crack { opacity: 0; }
+.cookie-splitting .cookie-left, .cookie-paper-emerging .cookie-left { opacity: 1; transform: translate(-55%, 1%) rotate(-5deg); }
+.cookie-splitting .cookie-right, .cookie-paper-emerging .cookie-right { opacity: 1; transform: translate(55%, -1%) rotate(5deg); }
+.cookie-paper-sequence .cookie-left, .cookie-fortune-typing .cookie-left, .cookie-fortune-revealed .cookie-left { opacity: 1; transform: translate(-55%, 1%) rotate(-5deg); }
+.cookie-paper-sequence .cookie-right, .cookie-fortune-typing .cookie-right, .cookie-fortune-revealed .cookie-right { opacity: 1; transform: translate(55%, -1%) rotate(5deg); }
+.cookie-splitting .crumbles { opacity: 1; transform: translateY(8%) scale(1.04); }
+.cookie-paper-sequence .crumbles, .cookie-fortune-typing .crumbles, .cookie-fortune-revealed .crumbles { opacity: 1; transform: translateY(8%) scale(1); }
+.cookie-paper-emerging .crumbles { opacity: 1; transform: translateY(8%) scale(1); }
+.cookie-paper-emerging .paper-tip { opacity: 1; transform: translate(-50%, 0) rotate(8deg); }
+.fortune-paper { position: absolute; z-index: 8; left: 50%; top: 0; width: min(78%, 25rem); pointer-events: none; transform: translate(-50%, 0); }
+.paper-roll { position: absolute; z-index: 2; left: 50%; top: 0; width: 1.25rem; height: 2.3rem; border: .2rem solid #d59a51; border-left-color: #9b541b; border-radius: 50%; background: #f4d49d; transform: translate(-50%, -35%) rotate(8deg); box-shadow: 2px 2px 5px rgba(126, 68, 16, .15); }
+.paper-sheet { position: relative; width: 100%; min-height: 10rem; padding: 2rem 2.5rem; overflow: hidden; background: #f4e1ba; box-shadow: 0 10px 20px rgba(91, 52, 20, .12); opacity: 0; transform-origin: top center; }
+.paper-texture { position: absolute; inset: 0; pointer-events: none; background: url('/Cookie-assets/Paper texture.png') center / 14rem auto repeat; opacity: .12; mix-blend-mode: multiply; }
+.fortune-content { position: relative; z-index: 1; color: #5a3217; text-align: center; opacity: 0; transform: translateY(.6rem); }
+.fortune-content span { display: block; margin-bottom: .8rem; font-family: Fraunces, Georgia, serif; font-size: .62rem; letter-spacing: .18em; }
+.fortune-content p { margin: 0 auto; max-width: 22rem; font-family: Fraunces, Georgia, serif; font-size: clamp(1rem, 1.7vw, 1.35rem); line-height: 1.45; }
+.fortune-paper-paper-emerging { animation: paper-pull .9s cubic-bezier(.22, 1, .36, 1) forwards; }
+.fortune-paper-paper-emerging .paper-sheet { opacity: 0; transform: scaleY(.08); }
+.fortune-paper-paper-unrolling { animation: paper-settle .8s ease-out forwards; }
+.fortune-paper-paper-unrolling .paper-roll { opacity: 0; transition: opacity .35s ease; }
+.fortune-paper-paper-unrolling .paper-sheet, .fortune-paper-fortune-revealing .paper-sheet, .fortune-paper-fortune-revealed .paper-sheet { opacity: 1; transform: scaleY(1); transition: opacity .45s ease, transform .85s cubic-bezier(.22, 1, .36, 1); }
+.fortune-paper-fortune-revealing .fortune-content, .fortune-paper-fortune-revealed .fortune-content { opacity: 1; transform: translateY(0); transition: opacity .55s ease, transform .55s ease; }
+.fortune-paper-fortune-revealed { transform: translate(-50%, 0) rotate(-1deg); }
+.paper-sequence-stage { position: relative; width: 100%; aspect-ratio: 1 / 1; }
+.paper-sequence-stage > img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.fortune-paper-paper-sequence { animation: paper-sequence-in .35s ease-out forwards; }
+.fortune-paper-paper-sequence .paper-sequence-stage { opacity: 1; }
+.fortune-paper-fortune-typing, .fortune-paper-fortune-revealed { transform: translate(-50%, 0) rotate(-1deg); }
+.fortune-paper-fortune-typing .fortune-content, .fortune-paper-fortune-revealed .fortune-content { position: absolute; top: 50%; left: 7%; right: 7%; color: #5a3217; text-align: center; opacity: 1; transform: translateY(-50%); }
+.fortune-paper-fortune-typing .fortune-content span, .fortune-paper-fortune-revealed .fortune-content span { display: block; margin-bottom: .15rem; font-family: Fraunces, Georgia, serif; font-size: .42rem; line-height: 1; letter-spacing: .14em; }
+.fortune-paper-fortune-typing .fortune-content p, .fortune-paper-fortune-revealed .fortune-content p { margin: 0 auto; max-width: none; font-family: Fraunces, Georgia, serif; font-size: clamp(.68rem, 1.15vw, .92rem); line-height: 1.08; }
+@keyframes paper-sequence-in { from { opacity: .2; transform: translate(-50%, .75rem); } to { opacity: 1; transform: translate(-50%, 0); } }
+.cookie-button:hover { transform: scale(1.025) rotate(-.5deg); }
+.cookie-button.cookie-pressing { animation: press .21s cubic-bezier(.22, 1, .36, 1) both; }
+.cookie-button.cookie-cracking, .cookie-button.cookie-splitting, .cookie-button.cookie-paper-emerging { animation-play-state: paused; }
+.sticker { position: absolute; width: clamp(5rem, 10vw, 9rem); transition: transform .35s ease; opacity: 0; animation: sticker-pop .5s cubic-bezier(.34, 1.56, .64, 1) 2.3s forwards; }
+.sticker-left { left: clamp(-13rem, -15vw, -5rem); top: 39%; }
+.sticker-right { right: clamp(-13rem, -15vw, -5rem); top: 39%; transform: scaleX(-1); animation-delay: 2.4s; }
+.sticker:hover { transform: rotate(-7deg) scale(1.06); }
+.sticker-right:hover { transform: scaleX(-1) rotate(-7deg) scale(1.06); }
+.prompt { position: absolute; bottom: clamp(1rem, 3vh, 2rem); left: 0; right: 0; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 5vw; border: 0; color: inherit; font: inherit; background: transparent; cursor: pointer; opacity: 0; animation: prompt-rise .55s ease-out 2.6s forwards; }
+.prompt:disabled { cursor: default; }
+.prompt p { grid-column: 2; margin: 0; font-size: clamp(1.65rem, 2.8vw, 2.6rem); }
+.arrow { position: relative; top: -1.2rem; justify-self: end; margin-right: clamp(.75rem, 2vw, 1.75rem); width: clamp(4rem, 7vw, 6rem); animation: nudge 8s ease-in-out infinite; }
+@keyframes breathe { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes cookie-rise { from { opacity: 0; transform: translateY(3.5rem); } to { opacity: 1; transform: translateY(0); } }
+@keyframes headline-in { from { opacity: 0; translate: 0 -1rem; } to { opacity: 1; translate: 0 0; } }
+@keyframes sticker-pop { from { opacity: 0; scale: .55; } to { opacity: 1; scale: 1; } }
+@keyframes prompt-rise { from { opacity: 0; transform: translateY(1.25rem); } to { opacity: 1; transform: translateY(0); } }
+@keyframes paper-pull { 0% { opacity: .35; transform: translate(-50%, 1.5rem); } 32% { opacity: 1; transform: translate(-50%, 1.1rem); } 100% { opacity: 1; transform: translate(-50%, 0); } }
+@keyframes paper-settle { from { transform: translate(-50%, .75rem) rotate(1deg); } to { transform: translate(-50%, 0) rotate(-1deg); } }
+@keyframes tap { 0% { transform: scale(1); } 35% { transform: scale(.96) rotate(1.2deg); } 65% { transform: scale(1.015) rotate(-1deg); } 100% { transform: scale(1); } }
+@keyframes press { 0% { transform: scale(1) rotate(0); } 55% { transform: scale(.955) rotate(1deg); } 100% { transform: scale(1) rotate(0); } }
+@keyframes nudge { 0%,72%,100% { transform: scale(1) rotate(0); } 78% { transform: scale(1.13) rotate(-5deg); } 84% { transform: scale(1) rotate(2deg); } }
+@media (max-width: 700px) {
+  .page { padding-top: 3rem; }
+  h1 { white-space: normal; font-size: clamp(2.1rem, 9.5vw, 3.8rem); max-width: 20rem; }
+  .shine-left { left: -1.5rem; top: -2.8rem; }
+  .shine-right { right: -.8rem; bottom: -2.5rem; }
+  .cookie-stage { width: min(64vw, 23rem); margin-top: 2.5rem; }
+  .sticker { width: 4.8rem; }
+  .sticker-left { left: -1.5rem; top: 42%; }
+  .sticker-right { right: -1.5rem; top: 42%; }
+  .prompt { padding: 0 4vw; }
+  .arrow { top: -1rem; margin-right: .5rem; }
+  .prompt p { font-size: clamp(1.65rem, 7vw, 2.2rem); }
+  .fortune-paper { left: 50%; width: min(86%, 20rem); top: 0; }
+  .paper-sheet { min-height: 9rem; padding: 1.5rem 1.25rem; }
+}
